@@ -1,0 +1,70 @@
+from flask import Flask, render_template, request
+from validate_docbr import CPF, CNPJ
+
+# nome da aplicação 
+app = Flask (__name__)
+
+# lista de produtos:
+lista_produtos = [
+    {"nome": "Mais esperto que o diabo", "genero": "autoajuda"},
+    {"nome": "É assim que acaba", "genero": "Romance"},
+    {"nome": "Código limpo", "genero": "Informática linguagens"},
+]
+
+# rotas sem direcionamento:
+@app.route("/cpf")
+def gerar_cpf():
+    cpf = CPF ()
+    cpf_retorno = cpf.generate((True))
+    return render_template("cpf.html", cpf = cpf_retorno)
+
+@app.route("/cnpj")
+def gerar_cnpj():
+    cnpj = CNPJ ()
+    cnpj_retorno = cnpj.generate((True))
+    return render_template("cnpj.html", cnpj = cnpj_retorno)
+
+
+# rotas com direcionamento:
+@app.route ("/")
+def home():
+    return render_template ('home.html')
+
+@app.route ("/contato")
+def contato():
+    return render_template ('contato.html')
+    
+@app.route ("/termosdeuso")
+def termosdeuso():
+    return render_template ('termosdeuso.html')
+
+@app.route ("/politicadeprivacidade")
+def politicadeprivacidade():
+    return render_template ('politicadeprivacidade.html')
+
+@app.route ("/comoutilizar")
+def comoutilizar():
+    return render_template ('comoutilizar.html')
+
+@app.route("/produtos")
+def produtos():
+    lista_produtos = [
+        {"nome": "Mais esperto que o diabo", "genero": "autoajuda"},
+        {"nome": "É assim que acaba", "genero": "Romance"},
+        {"nome": "Código limpo", "genero": "Informática linguagens"},
+    ]
+
+    return render_template("produtos.html", produtos=lista_produtos) 
+
+@app.route("/produtos/cadastro")
+def cadastro_produto():
+    return render_template("cadastroproduto.html")
+
+@app.route("/produtos/cadastro", methods=['POST'])
+def salvar_produtos():
+    nome = request.form  ['nome']#dicionario imnutavel
+    descricao = request.form  ['descricao']
+
+    produto = { "nome": nome, "descricao": descricao}
+    lista_produtos.append(produto)
+    return render_template("produtos.html", produtos = lista_produtos) 

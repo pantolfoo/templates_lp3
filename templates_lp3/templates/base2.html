@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> {% block title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="{{url_for('static', filename='style.css')}}">
+</head>
+
+<body>
+
+    {% block cabecalho%}{% endblock %}
+    
+    Lorem ipsum dolor sit, amet consectetur adipisicing elit. 
+    In ipsam magnam aperiam suscipit deleniti? 
+    Inventore delectus accusamus temporibus vero numquam dolor voluptatum, perspiciatis ut, corrupti enim sunt impedit velit doloremque?
+</body>
+<footer>
+    <p> Desenvolvido por Isabella Pantolfo Melo </p>
+</footer>
+
+
+</html>

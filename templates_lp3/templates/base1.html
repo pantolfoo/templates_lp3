@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'style.css')  }}">
+
+    <center>
+        <title>
+            {% block title %}
+            {% endblock %}
+
+        </title>
+</head>
+
+<body>
+    <div class="menu">
+        <nav>
+            <a href="/">Home page</a>
+            <a href="/contato">Contato</a>
+            <a href="/produtos">Produtos</a>
+        </nav>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+        Desenvolvido por Isabella Pantolfo, 2024
+    </footer>
+
+    <div class="menu-rodape">
+        <nav>
+            <a href="/termosdeuso">Termos de Uso</a>
+            <a href="/politicadeprivacidade">Politica de Privacidade</a>
+            <a href="/comoutilizar">Como Usar</a>
+        </nav>
+        </ul>
+</body>
+</center>
+</html>
