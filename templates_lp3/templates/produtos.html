@@ -4,15 +4,23 @@
 
 {% block content %}
 <h1>Produtos</h1>
-<p> Página de produtos </p>
 
 {% if produtos %}
-{% for produto in produtos %}
-<h2>{{ produto.nome }} </h2>
-<p>{{ produto.genero }} </p>
-{% endfor %}
-
+    {% for produto in produtos %}
+        <div class="produto">
+            <h3> Nome: {{ produto.nome }}</h3>
+            <h3> Genero: {{ produto.genero }}</h3>
+            <h3>Autora: {{ produto.autor }}</h3>
+            <img 
+            src="{{ url_for('static', filename='imagens/' + produto.img + '.PNG') }}" 
+            width="300px" 
+            alt="{{ produto.nome }}" 
+            id="f1" 
+            class="foto-produto"
+        >
+        </div>
+    {% endfor %}
 {% else %}
-<h2> Nenhum produto cadastrado</h2>
+    <h2>Nenhum produto cadastrado</h2>
 {% endif %}
 {% endblock %}

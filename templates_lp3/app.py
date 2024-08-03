@@ -4,13 +4,6 @@ from validate_docbr import CPF, CNPJ
 # nome da aplicação 
 app = Flask (__name__)
 
-# lista de produtos:
-lista_produtos = [
-    {"nome": "Mais esperto que o diabo", "genero": "autoajuda"},
-    {"nome": "É assim que acaba", "genero": "Romance"},
-    {"nome": "Código limpo", "genero": "Informática linguagens"},
-]
-
 # rotas sem direcionamento:
 @app.route("/cpf")
 def gerar_cpf():
@@ -46,12 +39,21 @@ def politicadeprivacidade():
 def comoutilizar():
     return render_template ('comoutilizar.html')
 
+
+# lista de produtos:
+lista_produtos = [
+    {"nome": "É assim que começa", "genero": "Romance", "autor": "Coolen Hoover"},
+    {"nome": "É assim que acaba", "genero": "Romance", "autor": "Coolen Hoover"},
+    {"nome": "Todas as suas (im)perfeições", "genero": "Romance", "autor": "Coolen Hoover"},
+]
+
+
 @app.route("/produtos")
 def produtos():
     lista_produtos = [
-        {"nome": "Mais esperto que o diabo", "genero": "autoajuda"},
-        {"nome": "É assim que acaba", "genero": "Romance"},
-        {"nome": "Código limpo", "genero": "Informática linguagens"},
+        {"nome": "É assim que acaba", "genero": "Romance", "autor": "Colleen Hoover", "img": "1"},
+        {"nome": "É assim que começa", "genero": "Romance", "autor": "Colleen Hoover", "img": "2"},
+        {"nome": "Todas as suas (im)perfeições", "genero": "Romance", "autor": "Colleen Hoover", "img": "3"},
     ]
 
     return render_template("produtos.html", produtos=lista_produtos) 
@@ -63,8 +65,10 @@ def cadastro_produto():
 @app.route("/produtos/cadastro", methods=['POST'])
 def salvar_produtos():
     nome = request.form  ['nome']#dicionario imnutavel
-    descricao = request.form  ['descricao']
+    genero = request.form  ['genero']
+    autor = request.form ['autor']
 
-    produto = { "nome": nome, "descricao": descricao}
+    produto = { "nome": nome, "genero": genero, "autor": autor}
+
     lista_produtos.append(produto)
     return render_template("produtos.html", produtos = lista_produtos) 
